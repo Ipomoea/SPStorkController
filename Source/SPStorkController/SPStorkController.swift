@@ -22,7 +22,7 @@
 import UIKit
 
 @objc
-final class SPStorkController: NSObject {
+public final class SPStorkController: NSObject {
 
     @objc
     static public func scrollViewDidScroll(_ scrollView: UIScrollView) {

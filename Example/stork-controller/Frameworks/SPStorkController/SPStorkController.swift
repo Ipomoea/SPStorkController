@@ -21,10 +21,8 @@
 
 import UIKit
 
-@objc
-public final class SPStorkController: NSObject {
-
-    @objc
+public struct SPStorkController {
+    
     static public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let controller = self.controller(for: scrollView) {
             if let presentationController = controller.presentationController as? SPStorkPresentationController {
@@ -42,22 +40,19 @@ public final class SPStorkController: NSObject {
             }
         }
     }
-
-    @objc
+    
     static public func updatePresentingController(parent controller: UIViewController) {
         if let presentationController = controller.presentedViewController?.presentationController as? SPStorkPresentationController {
             presentationController.updatePresentingController()
         }
     }
-
-    @objc
+    
     static public func updatePresentingController(modal controller: UIViewController) {
         if let presentationController = controller.presentationController as? SPStorkPresentationController {
             presentationController.updatePresentingController()
         }
     }
-
-    @objc
+    
     static private func controller(for view: UIView) -> UIViewController? {
         var nextResponder = view.next
         while nextResponder != nil && !(nextResponder! is UIViewController) {
@@ -65,6 +60,8 @@ public final class SPStorkController: NSObject {
         }
         return nextResponder as? UIViewController
     }
+    
+    private init() {}
 }
 
 extension UIViewController {
