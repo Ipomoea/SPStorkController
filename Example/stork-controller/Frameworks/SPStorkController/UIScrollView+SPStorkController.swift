@@ -10,13 +10,16 @@ import Foundation
 import UIKit
 import ObjectiveC
 
-public protocol SPStorkGestureRecognizerDelegate {
+@objc
+public protocol SPStorkGestureRecognizerDelegate: NSObjectProtocol {
     func shouldRecognizeSimultaneouslyWithSPStorkPan() -> Bool
 }
 
 private var SP_STORK_GESTURE_RECOGNIZER_DELEGATE_ASSOCIATION_KEY = "SP_STORK_GESTURE_RECOGNIZER_DELEGATE"
 
 extension UIScrollView {
+
+    @objc
     open var spStorkGestureRecognizerDelegate: SPStorkGestureRecognizerDelegate? {
         get {
             return objc_getAssociatedObject(self, &SP_STORK_GESTURE_RECOGNIZER_DELEGATE_ASSOCIATION_KEY) as? SPStorkGestureRecognizerDelegate
