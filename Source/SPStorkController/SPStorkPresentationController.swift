@@ -88,6 +88,11 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
         self.backgroundView.backgroundColor = UIColor.black
         self.backgroundView.translatesAutoresizingMaskIntoConstraints = false
         containerView.insertSubview(self.backgroundView, belowSubview: self.snapshotViewContainer)
+
+        let dismissGesture = UITapGestureRecognizer()
+        dismissGesture.addTarget(self, action: #selector(handleTap))
+        self.backgroundView.addGestureRecognizer(dismissGesture)
+
         NSLayoutConstraint.activate([
             self.backgroundView.topAnchor.constraint(equalTo: window.topAnchor),
             self.backgroundView.leftAnchor.constraint(equalTo: window.leftAnchor),
@@ -240,6 +245,11 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
 }
 
 extension SPStorkPresentationController {
+
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        presentingViewController.view.layer.removeAllAnimations()
+        presentedViewController.dismiss(animated: true, completion: nil)
+    }
     
     @objc func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
         guard gestureRecognizer.isEqual(pan), self.isSwipeToDismissEnabled else { return }
