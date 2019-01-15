@@ -28,13 +28,13 @@ public struct SPStorkController {
             if let presentationController = controller.presentationController as? SPStorkPresentationController {
                 let translation = -(scrollView.contentOffset.y + scrollView.contentInset.top)
                 if translation >= 0 {
-                    scrollView.isScrollEnabled = false
                     scrollView.subviews.forEach {
                         $0.transform = CGAffineTransform(translationX: 0, y: -translation)
                     }
                     if presentationController.pan?.state != UIGestureRecognizer.State.changed {
                         presentationController.scrollViewDidScroll(translation)
                     }
+                    scrollView.isScrollEnabled = false
                     scrollView.isScrollEnabled = true
                 } else {
                     presentationController.scrollViewDidScroll(0)
