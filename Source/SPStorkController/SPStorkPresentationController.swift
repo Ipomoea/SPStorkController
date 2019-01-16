@@ -379,6 +379,7 @@ extension SPStorkPresentationController {
         self.gradeView.backgroundColor = UIColor.black
         self.snapshotView!.addSubview(self.gradeView)
         self.constraints(view: self.gradeView, to: self.snapshotView!)
+        addTapToDismiss()
     }
     
     private func updateSnapshotAspectRatio() {
@@ -419,5 +420,11 @@ extension SPStorkPresentationController {
         animation.duration = duration
         view.layer.add(animation, forKey: "cornerRadius")
         view.layer.cornerRadius = cornerRadius
+    }
+
+    private func addTapToDismiss() {
+        let dismissGesture = UITapGestureRecognizer()
+        dismissGesture.addTarget(self, action: #selector(handleTap))
+        self.snapshotView?.addGestureRecognizer(dismissGesture)
     }
 }
