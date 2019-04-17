@@ -22,7 +22,7 @@
 import UIKit
 
 class SPStorkPresentationController: UIPresentationController, UIGestureRecognizerDelegate {
-    
+
     var isSwipeToDismissEnabled: Bool = true
     var showIndicator: Bool = true
     var customHeight: CGFloat? = nil
@@ -270,7 +270,7 @@ extension SPStorkPresentationController {
             }
         case .ended:
             let translation = gestureRecognizer.translation(in: presentedView).y
-            if translation >= 240 {
+            if translation >= 110 {
                 self.workGester = false
                 presentedViewController.dismiss(animated: true, completion: nil)
             } else {
